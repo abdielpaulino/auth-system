@@ -2,8 +2,10 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/api", (req, res) => {
-  res.json({ message: "API funfa!" });
+router.get("/", (req, res) => {
+  res.json({
+    message: "API running",
+  });
 });
 
 export default router;

@@ -34,10 +34,21 @@ This project is part of my studies in software development.
 auth-system
 │
 ├── backend
-│   └── src
-│       ├── controllers
-│       ├── routes
-│       └── server.js
+│ └── src
+│ │
+│ ├── controllers
+│ │ └── authController.js
+│ │
+│ ├── middlewares
+│ │ └── loginValidation.js
+│ │ └── registerValidation.js
+│ │
+│ ├── routes
+│ │ ├── apiRoutes.js
+│ │ └── authRoutes.js
+│ │
+│ ├── app.js
+│ └── server.js
 │
 ├── frontend
 │
@@ -47,27 +58,40 @@ auth-system
 
 ---
 
+---
+
 ## 🔑 API Routes
 
 ### Test Route
 
 GET `/api`
 
-Returns a simple message to confirm the API is working.
+Returns a simple message to confirm the API is running.
+
+---
 
 ### Auth Routes
 
-POST `/api/auth/register`
+POST `/api/auth/register`  
 Register a new user.
 
-POST `/api/auth/login`
+POST `/api/auth/login`  
 Authenticate a user.
+
+---
+
+## ✅ Current Features
+
+- API structure using Express
+- Modular architecture (controllers, routes, middlewares)
+- User registration validation
+- Input sanitization and validation middleware
 
 ---
 
 ## 📌 Features (Planned)
 
-- User registration
+- User registration with database
 - User login
 - Password hashing
 - JWT authentication
