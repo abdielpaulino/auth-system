@@ -4,23 +4,24 @@ Authentication system built for learning **full stack development**.
 
 The goal of this project is to understand how modern authentication systems work using a **Node.js backend** and a **React frontend**.
 
-This project is part of my studies in software development.
+This project is part of my studies in **software development**.
 
 ---
 
-## 🚀 Technologies
+# 🚀 Technologies
 
-### Backend
+## Backend
 
 - Node.js
 - Express
+- MySQL
 - REST API
 
-### Frontend (planned)
+## Frontend (planned)
 
 - React
 
-### Tools
+## Tools
 
 - Git
 - GitHub
@@ -28,27 +29,45 @@ This project is part of my studies in software development.
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```
 auth-system
 │
 ├── backend
-│ └── src
-│ │
-│ ├── controllers
-│ │ └── authController.js
-│ │
-│ ├── middlewares
-│ │ └── loginValidation.js
-│ │ └── registerValidation.js
-│ │
-│ ├── routes
-│ │ ├── apiRoutes.js
-│ │ └── authRoutes.js
-│ │
-│ ├── app.js
-│ └── server.js
+│   │
+│   ├── database
+│   │   └── schema.sql
+│   │
+│   ├── node_modules
+│   │
+│   ├── src
+│   │   │
+│   │   ├── config
+│   │   │   └── database.js
+│   │   │
+│   │   ├── controllers
+│   │   │   └── authController.js
+│   │   │
+│   │   ├── middlewares
+│   │   │   ├── loginValidation.js
+│   │   │   └── registerValidation.js
+│   │   │
+│   │   ├── models
+│   │   │   └── userModel.js
+│   │   │
+│   │   ├── routes
+│   │   │   ├── apiRoutes.js
+│   │   │   └── authRoutes.js
+│   │   │
+│   │   ├── app.js
+│   │   │
+│   │   └── server.js
+│   │
+│   ├── .env
+│   ├── .env.example
+│   ├── package-lock.json
+│   └── package.json
 │
 ├── frontend
 │
@@ -58,42 +77,43 @@ auth-system
 
 ---
 
----
+# 🔑 API Routes
 
-## 🔑 API Routes
-
-### Test Route
+## Test Route
 
 GET `/api`
 
-Returns a simple message to confirm the API is running.
+Returns a message confirming the API is working.
 
 ---
 
-### Auth Routes
+## Auth Routes
 
-POST `/api/auth/register`  
+POST `/api/auth/register`
+
 Register a new user.
 
-POST `/api/auth/login`  
+POST `/api/auth/login`
+
 Authenticate a user.
 
 ---
 
-## ✅ Current Features
+# 📌 Features
 
-- API structure using Express
-- Modular architecture (controllers, routes, middlewares)
+## Implemented
+
 - User registration validation
-- Input sanitization and validation middleware
+- Name validation
+- Email validation
+- Password validation
+- MySQL database connection
+- User model for database interaction
 
----
+## Planned
 
-## 📌 Features (Planned)
-
-- User registration with database
-- User login
 - Password hashing
+- Login authentication
 - JWT authentication
 - Login blocking after failed attempts
 - Reports
@@ -103,7 +123,7 @@ Authenticate a user.
 
 ---
 
-## 📚 Learning Goals
+# 📚 Learning Goals
 
 This project was created to practice:
 
@@ -115,6 +135,6 @@ This project was created to practice:
 
 ---
 
-## 🚧 Status
+# 🚧 Status
 
 Project in development.
