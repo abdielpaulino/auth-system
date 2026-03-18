@@ -4,8 +4,6 @@ Authentication system built for learning **full stack development**.
 
 The goal of this project is to understand how modern authentication systems work using a **Node.js backend** and a **React frontend**.
 
-This project is part of my studies in **software development**.
-
 ---
 
 # 🚀 Technologies
@@ -15,6 +13,7 @@ This project is part of my studies in **software development**.
 - Node.js
 - Express
 - MySQL
+- bcrypt
 - REST API
 
 ## Frontend (planned)
@@ -25,7 +24,7 @@ This project is part of my studies in **software development**.
 
 - Git
 - GitHub
-- Thunder Client (API testing)
+- Thunder Client
 
 ---
 
@@ -35,14 +34,9 @@ This project is part of my studies in **software development**.
 auth-system
 │
 ├── backend
-│   │
-│   ├── database
-│   │   └── schema.sql
-│   │
 │   ├── node_modules
 │   │
 │   ├── src
-│   │   │
 │   │   ├── config
 │   │   │   └── database.js
 │   │   │
@@ -50,7 +44,6 @@ auth-system
 │   │   │   └── authController.js
 │   │   │
 │   │   ├── middlewares
-│   │   │   ├── loginValidation.js
 │   │   │   └── registerValidation.js
 │   │   │
 │   │   ├── models
@@ -60,14 +53,15 @@ auth-system
 │   │   │   ├── apiRoutes.js
 │   │   │   └── authRoutes.js
 │   │   │
-│   │   ├── app.js
-│   │   │
 │   │   └── server.js
+│   │
+│   ├── database
+│   │   └── schema.sql
 │   │
 │   ├── .env
 │   ├── .env.example
-│   ├── package-lock.json
-│   └── package.json
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── frontend
 │
@@ -79,23 +73,17 @@ auth-system
 
 # 🔑 API Routes
 
-## Test Route
+## Test
 
 GET `/api`
 
-Returns a message confirming the API is working.
-
 ---
 
-## Auth Routes
+## Auth
 
 POST `/api/auth/register`
 
-Register a new user.
-
 POST `/api/auth/login`
-
-Authenticate a user.
 
 ---
 
@@ -103,38 +91,20 @@ Authenticate a user.
 
 ## Implemented
 
-- User registration validation
-- Name validation
-- Email validation
-- Password validation
-- MySQL database connection
-- User model for database interaction
+- Register validation
+- Password hashing (bcrypt)
+- MySQL integration
+- User creation in database
 
 ## Planned
 
-- Password hashing
-- Login authentication
+- Email duplicate validation
+- Login system
 - JWT authentication
-- Login blocking after failed attempts
-- Reports
-- Google authentication
-- Camera integration
-- Address autofill using CEP API
-
----
-
-# 📚 Learning Goals
-
-This project was created to practice:
-
-- Backend architecture
-- REST API development
-- Authentication systems
-- Database integration
-- Frontend integration with React
+- Security improvements
 
 ---
 
 # 🚧 Status
 
-Project in development.
+In development.

@@ -1,12 +1,17 @@
+/* Bcrypt Import-----------------------------------------------*/
+import bcrypt from "bcrypt";
 /* Database Import---------------------------------------------*/
-import { createUser } from "../models/userModel.js";
+import { createUser } from "../models/userModels.js";
 
 /* Register----------------------------------------------------*/
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    const result = await createUser(name, email, password);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const result = await createUser(name, email, hashedPassword);
 
     res.status(201).json({
       message: "User successfully registered.",
@@ -25,7 +30,7 @@ export const registerUser = async (req, res) => {
 
 /* Login-------------------------------------------------------*/
 export const loginUser = (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   res.json({
     message: "User successfully logged in.",
