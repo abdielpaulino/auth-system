@@ -16,3 +16,22 @@ export const createUser = (name, email, password) => {
     });
   });
 };
+
+export const findUserByEmail = (email) => {
+  return new Promise((resolve, reject) => {
+    const sql = `
+      SELECT id, name, email, password
+      FROM users
+      WHERE email = ?
+      LIMIT 1
+    `;
+
+    db.query(sql, [email], (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+
+      resolve(results[0]);
+    });
+  });
+};

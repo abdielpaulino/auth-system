@@ -6,11 +6,11 @@ const app = express();
 
 app.use(express.json({ limit: "10kb" }));
 
-/* Routes------------------------------------------------------*/
+// Routes------------------------------------------------------
 app.use(apiRoutes);
 app.use("/api/auth", authRoutes);
 
-/* Globa Erros Message-----------------------------------------*/
+// Globa Erros Message-----------------------------------------
 app.use((err, req, res, next) => {
   console.error(err);
 

@@ -30,44 +30,42 @@ The goal of this project is to understand how modern authentication systems work
 
 # 📁 Project Structure
 
-```
 auth-system
 │
 ├── backend
-│   ├── node_modules
-│   │
-│   ├── src
-│   │   ├── config
-│   │   │   └── database.js
-│   │   │
-│   │   ├── controllers
-│   │   │   └── authController.js
-│   │   │
-│   │   ├── middlewares
-│   │   │   └── registerValidation.js
-│   │   │
-│   │   ├── models
-│   │   │   └── userModel.js
-│   │   │
-│   │   ├── routes
-│   │   │   ├── apiRoutes.js
-│   │   │   └── authRoutes.js
-│   │   │
-│   │   └── server.js
-│   │
-│   ├── database
-│   │   └── schema.sql
-│   │
-│   ├── .env
-│   ├── .env.example
-│   ├── package.json
-│   └── package-lock.json
+│ ├── node_modules
+│ │
+│ ├── src
+│ │ ├── config
+│ │ │ └── database.js
+│ │ │
+│ │ ├── controllers
+│ │ │ └── authController.js
+│ │ │
+│ │ ├── middlewares
+│ │ │ └── registerValidation.js
+│ │ │
+│ │ ├── models
+│ │ │ └── userModel.js
+│ │ │
+│ │ ├── routes
+│ │ │ ├── apiRoutes.js
+│ │ │ └── authRoutes.js
+│ │ │
+│ │ └── server.js
+│ │
+│ ├── database
+│ │ └── schema.sql
+│ │
+│ ├── .env
+│ ├── .env.example
+│ ├── package.json
+│ └── package-lock.json
 │
 ├── frontend
 │
 ├── .gitignore
 └── README.md
-```
 
 ---
 
@@ -91,16 +89,24 @@ POST `/api/auth/login`
 
 ## Implemented
 
-- Register validation
-- Password hashing (bcrypt)
+- Register validation middleware
+- Input sanitization (trim, lowercase)
+- Strong password validation:
+  - 8 to 20 characters
+  - Uppercase, lowercase, number and symbol
+  - Password confirmation
+  - Sequence prevention (e.g. "123", "abc")
+- Password hashing with bcrypt
 - MySQL integration
 - User creation in database
+- Duplicate email validation (409 Conflict)
 
 ## Planned
 
-- Email duplicate validation
-- Login system
+- Login system with bcrypt.compare()
 - JWT authentication
+- Protected routes
+- Better error handling
 - Security improvements
 
 ---

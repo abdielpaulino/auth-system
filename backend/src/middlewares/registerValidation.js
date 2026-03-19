@@ -7,14 +7,14 @@ export const validateRegister = (req, res, next) => {
 
   let { name, email, password, passwordConfirm } = req.body;
 
-  /* Validate Registration Fields--------------------------------*/
+  // Validate Registration Fields--------------------------------
   if (!name || !email || !password || !passwordConfirm) {
     return res.status(400).json({
       error: "All fields are required.",
     });
   }
 
-  /* Name Validation---------------------------------------------*/
+  // Name Validation---------------------------------------------
   name = name.trim();
 
   if (name.length < 3 || name.length > 50) {
@@ -33,7 +33,7 @@ export const validateRegister = (req, res, next) => {
 
   name = name.replace(/\s+/g, " ");
 
-  /* Email Validation---------------------------------------------*/
+  // Email Validation---------------------------------------------
   email = email.trim().toLowerCase();
 
   if (email.length > 100) {
@@ -50,17 +50,19 @@ export const validateRegister = (req, res, next) => {
     });
   }
 
-  /* Password Validation------------------------------------------*/
+  // Password Validation------------------------------------------
   password = password.trim();
   passwordConfirm = passwordConfirm.trim();
 
-  if (password.length < 6 || password.length > 15) {
+  // tamanho
+  if (password.length < 8 || password.length > 20) {
     return res.status(400).json({
-      error: "Password must be between 6 and 15 characters.",
+      error: "Password must be between 8 and 20 characters.",
     });
   }
 
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,15}$/;
+  // estrutura
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,20}$/;
 
   if (!passwordRegex.test(password)) {
     return res.status(400).json({
@@ -68,13 +70,21 @@ export const validateRegister = (req, res, next) => {
     });
   }
 
+  // sequência
+  if (hasSequence(password)) {
+    return res.status(400).json({
+      error: "Password cannot contain sequences like '123' or 'abc'.",
+    });
+  }
+
+  // confirmação
   if (passwordConfirm !== password) {
     return res.status(400).json({
       error: "Passwords do not match.",
     });
   }
 
-  /* Data forwarding----------------------------------------------*/
+  // Data forwarding----------------------------------------------
   req.body = { name, email, password };
 
   next();

@@ -1,13 +1,21 @@
-/* Bcrypt Import-----------------------------------------------*/
+// Bcrypt Import-----------------------------------------------
 import bcrypt from "bcrypt";
-/* Database Import---------------------------------------------*/
-import { createUser } from "../models/userModels.js";
+// Database Import---------------------------------------------
+import { createUser, findUserByEmail } from "../models/userModel.js";
 
-/* Register----------------------------------------------------*/
+// Register----------------------------------------------------
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    const existingUser = await findUserByEmail(email);
+
+    if (existingUser) {
+      return res.status(409).json({
+        error: "Email is already in use.",
+      });
+    }
+
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -28,7 +36,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
-/* Login-------------------------------------------------------*/
+// Login-------------------------------------------------------
 export const loginUser = (req, res) => {
   const { email } = req.body;
 
