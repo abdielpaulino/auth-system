@@ -1,3 +1,21 @@
+const hasSequence = (text) => {
+  const lowerText = text.toLowerCase();
+
+  const sequences = ["0123456789", "abcdefghijklmnopqrstuvwxyz"];
+
+  for (const sequence of sequences) {
+    for (let i = 0; i <= sequence.length - 3; i++) {
+      const part = sequence.slice(i, i + 3);
+
+      if (lowerText.includes(part)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};
+
 export const validateRegister = (req, res, next) => {
   if (!req.body) {
     return res.status(400).json({
@@ -23,6 +41,8 @@ export const validateRegister = (req, res, next) => {
     });
   }
 
+  name = name.replace(/\s+/g, " ");
+
   const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
 
   if (!nameRegex.test(name)) {
@@ -31,9 +51,7 @@ export const validateRegister = (req, res, next) => {
     });
   }
 
-  name = name.replace(/\s+/g, " ");
-
-  // Email Validation---------------------------------------------
+  // Email Validation--------------------------------------------
   email = email.trim().toLowerCase();
 
   if (email.length > 100) {
@@ -50,18 +68,16 @@ export const validateRegister = (req, res, next) => {
     });
   }
 
-  // Password Validation------------------------------------------
+  // Password Validation-----------------------------------------
   password = password.trim();
   passwordConfirm = passwordConfirm.trim();
 
-  // tamanho
   if (password.length < 8 || password.length > 20) {
     return res.status(400).json({
       error: "Password must be between 8 and 20 characters.",
     });
   }
 
-  // estrutura
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,20}$/;
 
   if (!passwordRegex.test(password)) {
@@ -70,21 +86,19 @@ export const validateRegister = (req, res, next) => {
     });
   }
 
-  // sequência
   if (hasSequence(password)) {
     return res.status(400).json({
       error: "Password cannot contain sequences like '123' or 'abc'.",
     });
   }
 
-  // confirmação
   if (passwordConfirm !== password) {
     return res.status(400).json({
       error: "Passwords do not match.",
     });
   }
 
-  // Data forwarding----------------------------------------------
+  // Data Forwarding---------------------------------------------
   req.body = { name, email, password };
 
   next();

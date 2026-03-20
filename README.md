@@ -43,7 +43,8 @@ auth-system
 │ │ │ └── authController.js
 │ │ │
 │ │ ├── middlewares
-│ │ │ └── registerValidation.js
+│ │ │ ├── registerValidation.js
+│ │ │ └── loginValidation.js
 │ │ │
 │ │ ├── models
 │ │ │ └── userModel.js
@@ -90,6 +91,7 @@ POST `/api/auth/login`
 ## Implemented
 
 - Register validation middleware
+- Login validation middleware
 - Input sanitization (trim, lowercase)
 - Strong password validation:
   - 8 to 20 characters
@@ -100,17 +102,19 @@ POST `/api/auth/login`
 - MySQL integration
 - User creation in database
 - Duplicate email validation (409 Conflict)
+- Real login system with bcrypt.compare()
 
 ## Planned
 
-- Login system with bcrypt.compare()
 - JWT authentication
 - Protected routes
-- Better error handling
+- Frontend (React)
+- Email verification system
 - Security improvements
 
 ---
 
 # 🚧 Status
 
-In development.
+Backend authentication flow completed.  
+Frontend implementation starting next.
